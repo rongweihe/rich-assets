@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>Rich Assets Book · 个人投资手账</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div id="app" class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="#overview"><span class="brand-mark">R</span><span class="brand-name">Rich Assets Book<small>PERSONAL INVESTMENT JOURNAL</small></span></a>
+    <div class="side-caption">我的投资手账</div>
+    <nav aria-label="主导航">
+      <button data-page="overview" class="nav active"><span>◫</span>资产总览</button>
+      <button data-page="positions" class="nav"><span>▤</span>投资仓位</button>
+      <button data-page="trades" class="nav"><span>⇄</span>短线操作<span class="nav-dot"></span></button>
+      <button data-page="journal" class="nav"><span>▧</span>策略与复盘</button>
+    </nav>
+    <div class="side-note"><span class="tiny">A NOTE TO MYSELF</span><p>少一点交易，<br>多一点时间。</p><span class="hairline"></span><small>给思考留白，让价值生长。</small></div>
+    <div class="side-bottom"><button class="nav" data-page="settings"><span>⚙</span>手账设置</button><button id="lock" class="nav"><span>♧</span>锁定手账</button><div class="profile"><span class="avatar">我</span><span>我的私人账本<small id="save-status">设计预览 · 数据仅本次会话</small></span></div></div>
+  </aside>
+  <main>
+    <header class="topbar"><span id="breadcrumb">我的手账 <span>/</span> 资产总览</span><div><span class="demo-badge">交互设计稿 · 示例数据</span><button class="icon-button" id="privacy" aria-label="隐藏金额">◉</button><button class="small-button" id="appearance">外观 <span>◐</span></button><button class="mobile-settings small-button" data-page="settings" aria-label="手账设置">设置</button></div></header>
+    <div class="content"><div id="view"></div>
+      <footer class="quote"><span class="quote-mark">“</span><div><blockquote id="quote-text">价格是你付出的，价值是你得到的。</blockquote><div class="quote-credit"><span id="quote-author">巴菲特转引本杰明·格雷厄姆 · 2008 年致股东信（译文）</span><a id="quote-source" href="https://www.berkshirehathaway.com/letters/2008ltr.pdf" target="_blank" rel="noopener">出处 ↗</a></div></div><button id="quote-next" aria-label="换一句投资金句">换一句 ↻</button></footer>
+      <div class="page-foot"><span>Rich Assets Book <span>·</span> 记录判断，也记录成长。</span><span>慢慢来，比较快。</span></div>
+    </div>
+  </main>
+</div>
+<dialog id="editor" aria-labelledby="dialog-title"><div class="dialog-head"><div><span class="eyebrow" id="dialog-kicker">YOUR LEDGER</span><h2 id="dialog-title"></h2></div><button id="close-dialog" class="icon-button" aria-label="关闭">×</button></div><div id="dialog-body"></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="finance.js"></script><script src="app.js"></script>
+</body></html>

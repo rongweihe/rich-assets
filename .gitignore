@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.build/
+.env
+.env.*
+!.env.example
+.staticrypt.json
+*.log
+.DS_Store
+*-preview.jpg
+liubai-preview.html
+*encrypted*.json

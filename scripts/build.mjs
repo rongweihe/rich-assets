@@ -10,17 +10,17 @@ const staticryptCLI = require.resolve('staticrypt/cli/index.js');
 
 // bundleSource 只打包明确列出的页面资源，不复制截图、备份或任意目录内容。
 export async function bundleSource() {
-  const [html, css, finance, app] = await Promise.all(
-    ['index.html', 'style.css', 'finance.js', 'app.js'].map(name => readFile(join(root, 'src', name), 'utf8'))
+  const [html, css, finance, quotes, app] = await Promise.all(
+    ['index.html', 'style.css', 'finance.js', 'quotes.js', 'app.js'].map(name => readFile(join(root, 'src', name), 'utf8'))
   );
   if (!html.includes('<link rel="stylesheet" href="style.css">') ||
-      !html.includes('<script src="finance.js"></script><script src="app.js"></script>')) {
+      !html.includes('<script src="finance.js"></script><script src="quotes.js"></script><script src="app.js"></script>')) {
     throw new Error('页面资源入口已改变，拒绝生成不完整的发布文件。');
   }
   return html.replace('<html lang="zh-CN">', '<html lang="zh-CN" data-protected-build="true">')
     .replace('<link rel="stylesheet" href="style.css">', () => `<style>\n${css}\n</style>`)
-    .replace('<script src="finance.js"></script><script src="app.js"></script>',
-      () => `<script>\n${finance}\n</script>\n<script>\n${app}\n</script>`);
+    .replace('<script src="finance.js"></script><script src="quotes.js"></script><script src="app.js"></script>',
+      () => `<script>\n${finance}\n</script>\n<script>\n${quotes}\n</script>\n<script>\n${app}\n</script>`);
 }
 
 // buildSite 密码只通过子进程环境传递；失败清除输出，禁止降级发布明文。

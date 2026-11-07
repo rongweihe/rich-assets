@@ -30,6 +30,9 @@ test('发布仅包含密文；正确密码还原，错误密码及篡改不能�
     assert.ok(decrypted.decoded.includes('Rich Assets Book'));
     assert.ok(decrypted.decoded.includes('data-protected-build="true"'));
     assert.ok(!decrypted.decoded.includes('src="finance.js"'));
+    assert.ok(!decrypted.decoded.includes('src="quotes.js"'));
+    assert.ok(decrypted.decoded.includes('data-api.binance.vision'));
+    assert.ok(!html.includes('data-api.binance.vision'));
     const wrongKey = await engine.hashPassword(randomBytes(24).toString('hex'), salt);
     assert.equal((await codec.decode(cipher, wrongKey, salt)).success, false);
     const tampered = (cipher[0] === '0' ? '1' : '0') + cipher.slice(1);

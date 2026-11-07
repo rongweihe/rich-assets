@@ -4,7 +4,7 @@
   "private": true,
   "description": "Password-protected personal investment journal for GitHub Pages",
   "scripts": {
-    "test": "node tests/finance.test.cjs && node --test tests/build.test.mjs",
+    "test": "node tests/finance.test.cjs && node --test tests/quotes.test.cjs tests/build.test.mjs",
     "build": "node scripts/build.mjs",
     "preview": "python3 -m http.server 4173 --bind 127.0.0.1 --directory dist"
   },

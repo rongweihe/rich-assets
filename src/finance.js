@@ -18,8 +18,9 @@
   }
   // percent 按共同计价币种计算比率；零成本收益率未定义，以 null 表达。
   function percent(a,b){return b===0n?null:a*100n*SCALE/b;}
-  // position 计算未实现盈亏；USD 转 CNY 只用于总览，不改变原币账目。
-  function position(p,fx){const cost=mul(parse(p.cost),parse(p.qty));const value=mul(parse(p.price),parse(p.qty));const convert=x=>p.market==='Crypto'||p.market==='美股'?mul(x,parse(fx)):x;return {cost,value,pnl:value-cost,cny:convert(value),cnyCost:convert(cost)};}
+  // position 计算未实现盈亏；costValue 是八位定点持仓总成本，绝不能覆盖原始单位成本 cost 字符串。
+  // USD 转 CNY 只用于总览，不改变原币账目。
+  function position(p,fx){const cost=mul(parse(p.cost),parse(p.qty));const value=mul(parse(p.price),parse(p.qty));const convert=x=>p.market==='Crypto'||p.market==='美股'?mul(x,parse(fx)):x;return {costValue:cost,value,pnl:value-cost,cny:convert(value),cnyCost:convert(cost)};}
   // tradePnl 只计算已平仓的做多记录，手续费与成交价使用相同币种。
   function tradePnl(t){return t.exit===''?null:mul(parse(t.exit)-parse(t.entry),parse(t.qty))-parse(t.fee);}
   const api={SCALE,parse,mul,format,percent,position,tradePnl};
